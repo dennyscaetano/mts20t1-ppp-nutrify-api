@@ -1,0 +1,39 @@
+meta {
+  name: Login de admin
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/users/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "admin@email.com",
+    "password": "123456"
+  }
+}
+
+script:post-response {
+  try {
+    const body = res.getBody();
+  
+    if (body && body.token) {
+      bru.setEnvVar("tokenAdmin", res.getBody().token);
+      console.log("Token do Admin salvo:", res.getBody().token);
+    } else {
+      console.warn("Token não encontrado no body:", res.getBody());
+    }
+  } catch (err) {
+    console.error("Erro ao parsear resposta:", err);
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

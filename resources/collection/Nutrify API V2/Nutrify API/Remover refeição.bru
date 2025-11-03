@@ -1,0 +1,19 @@
+meta {
+  name: Remover refeição
+  type: http
+  seq: 16
+}
+
+delete {
+  url: {{baseUrl}}/meals/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{idMeal}}
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}

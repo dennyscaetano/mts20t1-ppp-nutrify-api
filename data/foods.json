@@ -1,1 +1,123 @@
-[]
+[
+  {
+    "name": "Laranja",
+    "category": "Fruta",
+    "calories": 113,
+    "protein": 1.5,
+    "carbs": 22,
+    "fat": 0.4,
+    "id": "039e87dd-c395-4b2b-99b1-120aa0bfe08b",
+    "createdAt": "2025-11-03T14:14:51.177Z",
+    "updatedAt": "2025-11-03T14:14:51.177Z"
+  },
+  {
+    "name": "Café",
+    "category": "Bebida",
+    "calories": 130.8,
+    "protein": 0.3,
+    "carbs": 10,
+    "fat": 0.3,
+    "id": "6d9fe33a-625e-436e-b3e1-54caa483c980",
+    "createdAt": "2025-11-03T14:34:22.825Z",
+    "updatedAt": "2025-11-03T14:34:22.825Z"
+  },
+  {
+    "name": "Queijo",
+    "category": "Laticínios",
+    "calories": 127,
+    "protein": 7.6,
+    "carbs": 8.2,
+    "fat": 13.7,
+    "id": "317b8a6f-e3e8-4ae1-90bc-3292b4bc3715",
+    "createdAt": "2025-11-03T15:27:51.748Z",
+    "updatedAt": "2025-11-03T15:27:51.748Z"
+  },
+  {
+    "name": "Água de Coco",
+    "category": "Bebida",
+    "calories": 125.6,
+    "protein": 0.8,
+    "carbs": 31.7,
+    "fat": 0.8,
+    "id": "9f1602a3-be1b-48c4-a3e9-b71f2e4d332f",
+    "createdAt": "2025-11-03T15:27:55.720Z",
+    "updatedAt": "2025-11-03T15:27:55.720Z"
+  },
+  {
+    "name": "Frango",
+    "category": "Carnes",
+    "calories": 229.7,
+    "protein": 23,
+    "carbs": 0,
+    "fat": 8.2,
+    "id": "0d1a2a46-9fe8-4476-b716-1276b2d7dd23",
+    "createdAt": "2025-11-03T15:27:59.110Z",
+    "updatedAt": "2025-11-03T15:27:59.110Z"
+  },
+  {
+    "name": "Requeijão",
+    "category": "Laticínios",
+    "calories": 153.6,
+    "protein": 9.6,
+    "carbs": 9.1,
+    "fat": 11.5,
+    "id": "a50b4a18-f7d2-47d3-8326-9c456b2ca560",
+    "createdAt": "2025-11-03T15:29:49.526Z",
+    "updatedAt": "2025-11-03T15:29:49.526Z"
+  },
+  {
+    "name": "Arroz",
+    "category": "Cereal",
+    "calories": 168.7,
+    "protein": 2.8,
+    "carbs": 24.3,
+    "fat": 4.1,
+    "id": "2c2fd3c2-7f50-4662-b7cb-547e46d063e6",
+    "createdAt": "2025-11-03T15:31:24.655Z",
+    "updatedAt": "2025-11-03T15:31:24.655Z"
+  },
+  {
+    "name": "Suco de Laranja",
+    "category": "Bebida",
+    "calories": 92.2,
+    "protein": 0.2,
+    "carbs": 28,
+    "fat": 0.6,
+    "id": "3fb63323-66de-41bb-96b2-094e5021e8d2",
+    "createdAt": "2025-11-03T15:34:15.251Z",
+    "updatedAt": "2025-11-03T15:34:15.251Z"
+  },
+  {
+    "name": "Cenoura",
+    "category": "Legume",
+    "calories": 76.9,
+    "protein": 1.5,
+    "carbs": 3.2,
+    "fat": 0.3,
+    "id": "9e2ff4c8-a1c3-49fd-be38-7fa33bd50427",
+    "createdAt": "2025-11-03T15:39:48.412Z",
+    "updatedAt": "2025-11-03T15:39:48.412Z"
+  },
+  {
+    "name": "Maçã",
+    "category": "Fruta",
+    "calories": 84.6,
+    "protein": 1,
+    "carbs": 20.5,
+    "fat": 0.3,
+    "id": "cd97b060-59ee-4d6f-aba5-f8441b04d275",
+    "createdAt": "2025-11-03T15:39:48.447Z",
+    "updatedAt": "2025-11-03T15:39:48.447Z"
+  },
+  {
+    "name": "Iogurte",
+    "category": "Laticínios",
+    "calories": 122.2,
+    "protein": 6.2,
+    "carbs": 0.5,
+    "fat": 7.8,
+    "id": "8fa59d30-c208-4694-b662-13ceda0e4323",
+    "createdAt": "2025-11-03T20:27:58.377Z",
+    "updatedAt": "2025-11-03T20:27:58.377Z"
+  }
+]

@@ -1,0 +1,20 @@
+meta {
+  name: Listar alimentos
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{baseUrl}}/foods?sortBy=category&order=asc
+  body: none
+  auth: bearer
+}
+
+params:query {
+  sortBy: category
+  order: asc
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}

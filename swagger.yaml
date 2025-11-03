@@ -81,8 +81,26 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       summary: Listar alimentos
+      description: Lista todos os alimentos com opção de ordenação por campo e direção.
       security:
         - bearerAuth: []
+      parameters:
+        - name: sortBy
+          in: query
+          required: false
+          description: "Campo para ordenação (padrão: name)"
+          schema:
+            type: string
+            enum: [name, category, calories, protein, carbs, fat, createdAt, updatedAt]
+          example: "name"
+        - name: order
+          in: query
+          required: false
+          description: "Direção da ordenação (padrão: asc)"
+          schema:
+            type: string
+            enum: [asc, desc]
+          example: "asc"
       responses:
         '200':
           description: Lista de alimentos
@@ -92,13 +110,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Food'
+        '400':
+          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
   /foods/{id}:
     put:
       summary: Atualizar alimento
       security:
-        - bearerAuth: []
         - bearerAuth: []
       # Apenas admins podem atualizar/remover alimentos
       x-roles: [admin]
@@ -167,8 +186,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       summary: Listar refeições do usuário
+      description: |
+        Lista todas as refeições do usuário autenticado.
+        Administradores podem listar refeições de todos os usuários ou filtrar por um usuário específico usando o parâmetro `userId`.
       security:
         - bearerAuth: []
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          description: ID do usuário (apenas para administradores)
+          schema:
+            type: string
+          example: "user-123"
       responses:
         '200':
           description: Lista de refeições
@@ -183,6 +213,9 @@ paths:
   /meals/{id}:
     put:
       summary: Atualizar refeição
+      description: |
+        Atualiza uma refeição. Usuários podem atualizar apenas suas próprias refeições.
+        Administradores podem atualizar refeições de qualquer usuário.
       security:
         - bearerAuth: []
       parameters:
@@ -208,6 +241,9 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       summary: Remover refeição
+      description: |
+        Remove uma refeição. Usuários podem remover apenas suas próprias refeições.
+        Administradores podem remover refeições de qualquer usuário.
       security:
         - bearerAuth: []
       parameters:
@@ -223,6 +259,41 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /progress:
+    get:
+      summary: Consultar progresso diário de calorias
+      description: Retorna o progresso diário comparando consumo de calorias com a meta. Admins podem consultar qualquer usuário via query userId.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: date
+          in: query
+          required: false
+          description: "Data no formato YYYY-MM-DD (padrão: hoje)"
+          schema:
+            type: string
+            format: date
+          example: "2025-01-20"
+        - name: userId
+          in: query
+          required: false
+          description: ID do usuário (apenas para administradores)
+          schema:
+            type: string
+          example: "user-123"
+      responses:
+        '200':
+          description: Progresso diário calculado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Progress'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
 components:
@@ -395,6 +466,37 @@ components:
         protein: 1.1
         carbs: 23
         fat: 0.3
+    Progress:
+      type: object
+      description: Progresso diário de consumo calórico
+      properties:
+        userId:
+          type: string
+          description: ID do usuário consultado
+        date:
+          type: string
+          format: date
+          description: Data consultada (YYYY-MM-DD)
+        totalCalories:
+          type: number
+          description: Total de calorias consumidas no dia
+        calorieGoal:
+          type: number
+          description: Meta calórica do usuário
+        difference:
+          type: number
+          description: Diferença entre meta e consumo (positivo = abaixo da meta, negativo = acima da meta)
+        status:
+          type: string
+          enum: [below, equal, above]
+          description: Status do progresso (below = abaixo da meta, equal = exatamente na meta, above = acima da meta)
+      example:
+        userId: "user-1"
+        date: "2025-01-20"
+        totalCalories: 1850
+        calorieGoal: 2000
+        difference: 150
+        status: "below"
   responses:
     BadRequest:
       description: Requisição inválida

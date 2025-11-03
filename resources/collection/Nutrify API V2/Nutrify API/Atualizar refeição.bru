@@ -1,0 +1,28 @@
+meta {
+  name: Atualizar refeição
+  type: http
+  seq: 13
+}
+
+put {
+  url: {{baseUrl}}/meals/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: {{idMeal}}
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}
+
+body:json {
+  {
+    "foods": [
+      "{{idFood1}}",
+      "{{idFood2}}"
+    ]
+  }
+}

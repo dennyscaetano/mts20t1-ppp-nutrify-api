@@ -1,0 +1,37 @@
+meta {
+  name: Registrar refeição
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{baseUrl}}/meals
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}
+
+body:json {
+  {
+    "foods": ["{{idFood1}}","{{idFood2}}","{{idFood3}}"]
+  }
+}
+
+script:post-response {
+  try {
+    const body = res.getBody();
+  
+    if (body && body.id) {
+      bru.setEnvVar("idMeal", res.getBody().id);
+      console.log("Id da Refeição salvo:", res.getBody().id);
+    } else {
+      console.warn("Id não encontrado no body:", res.getBody());
+    }
+  } catch (err) {
+    console.error("Erro ao parsear resposta:", err);
+  }
+  
+}

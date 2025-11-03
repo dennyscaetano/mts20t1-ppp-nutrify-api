@@ -113,6 +113,7 @@ const MealRepo = {
     persistMeals();
     return meal;
   },
+  findAll: async () => Array.from(db.meals.values()),
   findByUserId: async (userId) => Array.from(db.meals.values()).filter(m => m.user === userId),
   findById: async (id) => db.meals.get(id) || null,
   update: async (id, data) => {

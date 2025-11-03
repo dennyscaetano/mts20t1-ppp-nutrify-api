@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Nutrify API",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

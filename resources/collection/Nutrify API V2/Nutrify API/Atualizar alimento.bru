@@ -1,0 +1,30 @@
+meta {
+  name: Atualizar alimento
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/foods/:id
+  body: json
+  auth: bearer
+}
+
+params:path {
+  id: {{idFood3}}
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}
+
+body:json {
+    {
+      "name": "Nome Alterado",
+      "category": "Categoria Alterada",
+      "calories": 9.9,
+      "protein": 9.9,
+      "carbs": 99.9,
+      "fat": 9.9
+    }
+}

@@ -8,6 +8,7 @@ const YAML = require('yamljs');
 const userRoutes = require('./routes/userRoutes');
 const foodRoutes = require('./routes/foodRoutes');
 const mealRoutes = require('./routes/mealRoutes');
+const progressRoutes = require('./routes/progressRoutes');
 
 const app = express();
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/users', userRoutes);
 app.use('/foods', foodRoutes);
 app.use('/meals', mealRoutes);
+app.use('/progress', progressRoutes);
 
 // Error handler
 // next is required by Express to recognize this as an error-handling middleware

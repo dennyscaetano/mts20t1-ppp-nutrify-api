@@ -1,0 +1,15 @@
+meta {
+  name: Perfil do usuário
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{baseUrl}}/users/profile
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}

@@ -1,0 +1,19 @@
+meta {
+  name: Remover alimento
+  type: http
+  seq: 15
+}
+
+delete {
+  url: {{baseUrl}}/foods/:id
+  body: none
+  auth: bearer
+}
+
+params:path {
+  id: {{idFood3}}
+}
+
+auth:bearer {
+  token: {{tokenAdmin}}
+}

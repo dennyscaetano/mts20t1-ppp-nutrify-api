@@ -25,8 +25,11 @@ exports.createMeal = async (userId, data) => {
   return meal;
 };
 
-exports.getMeals = async (userId) => {
-  const meals = await MealRepo.findByUserId(userId);
+exports.getMeals = async (requesterRole, requesterUserId, targetUserId) => {
+  const isAdmin = requesterRole === 'admin';
+  const meals = isAdmin
+    ? (targetUserId ? await MealRepo.findByUserId(targetUserId) : await MealRepo.findAll())
+    : await MealRepo.findByUserId(requesterUserId);
   // populate foods and recompute totals from foods to ensure consistency
   return Promise.all(meals.map(async (m) => {
     const foods = await Promise.all((m.foods || []).map(id => FoodRepo.findById(id)));
@@ -38,10 +41,11 @@ exports.getMeals = async (userId) => {
   }));
 };
 
-exports.updateMeal = async (userId, id, data) => {
+exports.updateMeal = async (requesterRole, userId, id, data) => {
   const existing = await MealRepo.findById(id);
   if (!existing) throw new HttpError(404, 'Refeição não encontrada');
-  if (existing.user !== userId) throw new HttpError(403, 'Acesso negado');
+  const isAdmin = requesterRole === 'admin';
+  if (!isAdmin && existing.user !== userId) throw new HttpError(403, 'Acesso negado');
   // If foods are provided, validate and recompute totals
   let toUpdate = { ...data };
   if (data.foods) {
@@ -58,9 +62,10 @@ exports.updateMeal = async (userId, id, data) => {
   return updated;
 };
 
-exports.deleteMeal = async (userId, id) => {
+exports.deleteMeal = async (requesterRole, userId, id) => {
   const existed = await MealRepo.findById(id);
   if (!existed) throw new HttpError(404, 'Refeição não encontrada');
-  if (existed.user !== userId) throw new HttpError(403, 'Acesso negado');
+  const isAdmin = requesterRole === 'admin';
+  if (!isAdmin && existed.user !== userId) throw new HttpError(403, 'Acesso negado');
   await MealRepo.delete(id);
 };

@@ -1,0 +1,72 @@
+meta {
+  name: Registro de usuário
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/users/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "{{nomeUsuario}}",
+    "email": "{{emailUsuario}}",
+    "password": "123456"
+  }
+}
+
+script:pre-request {
+  // Função para gerar nome aleatório
+  function gerarNomeAleatorio() {
+    const primeiros = ["Ana", "João", "Maria", "Carlos", "Fernanda", "Lucas", "Patrícia", "Diego", "Juliana", "Rafael"];
+    const sobrenomes = ["Silva", "Souza", "Oliveira", "Pereira", "Costa", "Santos", "Gomes", "Rodrigues", "Almeida", "Lima"];
+    
+    const primeiro = primeiros[Math.floor(Math.random() * primeiros.length)];
+    const sobrenome = sobrenomes[Math.floor(Math.random() * sobrenomes.length)];
+    return `${primeiro} ${sobrenome}`;
+  }
+  
+  // Função para gerar e-mail coerente com o nome
+  function gerarEmail(nomeInstrutor) {
+    const timestamp = Date.now();
+    const emailInstrutor = nomeInstrutor.toLowerCase().replace(/\s+/g, ".") + `.${timestamp}@teste.com`;
+    return emailInstrutor;
+  }
+  
+  // Gerar valores dinâmicos
+  const nomeUsuario = gerarNomeAleatorio();
+  const emailUsuario = gerarEmail(nomeUsuario);
+  
+  // Salvar nas variáveis de ambiente do Bruno (escopo atual)
+  bru.setVar("nomeUsuario", nomeUsuario);
+  bru.setVar("emailUsuario", emailUsuario);
+  
+  // (Opcional) log no console do Bruno para conferência
+  console.log(`Nome gerado: ${nomeUsuario}`);
+  console.log(`Email gerado: ${emailUsuario}`);
+  
+}
+
+script:post-response {
+  try {
+    const body = res.getBody();
+  
+    if (body && body.id) {
+  bru.setEnvVar("idUsuario", res.getBody().id);
+  console.log("✅ idUsuario salvo:", res.getBody().id);
+    } else {
+      console.warn("Id não encontrado no body:", res.getBody());
+    }
+    if (body && body.email) {
+  bru.setEnvVar("emailUsuario", res.getBody().email);
+  console.log("✅ emailUsuario salvo:", res.getBody().email);
+    } else {
+      console.warn("Email não encontrado no body:", res.getBody());
+    }
+  } catch (err) {
+    console.error("Erro ao parsear resposta:", err);
+  }
+}

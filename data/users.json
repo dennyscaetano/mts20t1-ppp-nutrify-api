@@ -1,12 +1,112 @@
 [
   {
-    "name": "User",
-    "email": "u@example.com",
+    "name": "Admin",
+    "email": "admin@email.com",
     "password": "$2a$10$Mm9EYHsGLy6qf3nFPFw89O1j2IaQil1dcjMwIGAnu9EQY69F/ndHm",
     "calorieGoal": 2000,
     "role": "admin",
     "id": "28b701ae-0542-4845-b97e-41c9023e8cdb",
     "createdAt": "2025-08-21T14:56:19.916Z",
     "updatedAt": "2025-08-21T14:56:19.916Z"
+  },
+  {
+    "name": "Carlos Silva",
+    "email": "carlos.silva.1762178543879@teste.com",
+    "password": "$2a$10$BfJRdF6cFq1M7sAzj4gu8eq1VU/rMbtBN2LYC1r.6Bg.A/zyumRwa",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "57f41f54-8393-4574-9f69-d774a8f829a3",
+    "createdAt": "2025-11-03T14:02:24.152Z",
+    "updatedAt": "2025-11-03T14:02:24.152Z"
+  },
+  {
+    "name": "João Lima",
+    "email": "joão.lima.1762182882362@teste.com",
+    "password": "$2a$10$j7N4ZtGxfd8gLa3Legd75OMWj97H1zPafce7BUkU4facoeteNjRKm",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "c5582da6-138e-429b-a926-51374a6e133e",
+    "createdAt": "2025-11-03T15:14:42.715Z",
+    "updatedAt": "2025-11-03T15:14:42.715Z"
+  },
+  {
+    "name": "Carlos Costa",
+    "email": "carlos.costa.1762182987148@teste.com",
+    "password": "$2a$10$.uG/aSuUzhMqqnLD4DNFVOJdAqmIZeAIY6d5hZw9vd.7i6baqG8ei",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "e481e16a-18a8-4f60-bec3-7b2961c7bb19",
+    "createdAt": "2025-11-03T15:16:27.238Z",
+    "updatedAt": "2025-11-03T15:16:27.238Z"
+  },
+  {
+    "name": "Diego Costa",
+    "email": "diego.costa.1762182989577@teste.com",
+    "password": "$2a$10$kY63E/X8D6U1Nu.IBDoIQukCHWdLDJThVHimMcoyBJ6FSDVig8iTa",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "5851dc94-6415-48a0-bdd2-6923693a73c3",
+    "createdAt": "2025-11-03T15:16:29.713Z",
+    "updatedAt": "2025-11-03T15:16:29.713Z"
+  },
+  {
+    "name": "Diego Silva",
+    "email": "diego.silva.1762183030273@teste.com",
+    "password": "$2a$10$1HJ4dpsj6dNPFF/sybWTr.LP8zMwsjqcTJiYv0nZtHjDHDoFNGunC",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "2a2e5fce-1231-4ca8-b5f8-394acc41198b",
+    "createdAt": "2025-11-03T15:17:10.363Z",
+    "updatedAt": "2025-11-03T15:17:10.363Z"
+  },
+  {
+    "name": "Maria Gomes",
+    "email": "maria.gomes.1762183134708@teste.com",
+    "password": "$2a$10$w82aUtVi5PunyRT/mdUyWepy26m6/5x9V73tsSYHanWzEByGk55QC",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "1dca361f-30dd-4b12-8ede-f3923e4e71e3",
+    "createdAt": "2025-11-03T15:18:54.865Z",
+    "updatedAt": "2025-11-03T15:18:54.865Z"
+  },
+  {
+    "name": "Carlos Santos",
+    "email": "carlos.santos.1762183596040@teste.com",
+    "password": "$2a$10$bWVdT.JfU6bZ8UAdCZeA8uphXUGVrXH28peBK21q6A7ZfwZqZUDyG",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "389b4c3f-233a-4e3f-8673-1c5828e9bcde",
+    "createdAt": "2025-11-03T15:26:36.197Z",
+    "updatedAt": "2025-11-03T15:26:36.197Z"
+  },
+  {
+    "name": "Rafael Oliveira",
+    "email": "rafael.oliveira.1762184140915@teste.com",
+    "password": "$2a$10$ScaZopySocT3HeldglxOL.rgvD29l3AzVX588mmOqC7acOwqVodwu",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "551cf8cb-8f8a-4f3f-8a8b-cada80452ad7",
+    "createdAt": "2025-11-03T15:35:41.078Z",
+    "updatedAt": "2025-11-03T15:35:41.078Z"
+  },
+  {
+    "name": "João Rodrigues",
+    "email": "joao.rodrigues.1762184388010@teste.com",
+    "password": "$2a$10$izwhP2zJmqNWCGVAums/O.qqdz2kaMHSCSjixCNl/kgeZZFKhdKka",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "bf220dda-4d8a-485d-83a4-95e83e753a79",
+    "createdAt": "2025-11-03T15:39:48.140Z",
+    "updatedAt": "2025-11-03T15:39:48.140Z"
+  },
+  {
+    "name": "Rafael Gomes",
+    "email": "rafael.gomes.1762201439008@teste.com",
+    "password": "$2a$10$6r23.Az9Ba0rmxdshRWVKeDoPGVu9iJBCKpBKx9WppjE0JHJ4Ui1.",
+    "calorieGoal": 2000,
+    "role": "user",
+    "id": "d71d0cd2-b0b2-46f4-9813-99b8c0d52dbd",
+    "createdAt": "2025-11-03T20:23:59.186Z",
+    "updatedAt": "2025-11-03T20:23:59.186Z"
   }
 ]

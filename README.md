@@ -6,7 +6,8 @@ API REST para gerenciamento de alimentação, dieta e controle de calorias.
 - Cadastro e autenticação de usuários (JWT)
 - Gerenciamento de alimentos
 - Registro de refeições
-- Controle diário de consumo calórico
+- Controle diário de consumo calórico e progresso
+- Permissões de administrador para gerenciar refeições e progresso de todos os usuários
 - Documentação Swagger
 - Testes unitários
 - Workflow GitHub Actions
@@ -32,6 +33,45 @@ Consulte o documento `REQUISITOS.md` para a especificação completa dos requisi
 - O endpoint `POST /meals` aceita apenas o corpo contendo a lista de IDs de alimentos (`foods`).
 - Os campos `date`, `createdAt` e `updatedAt` são gerados automaticamente pelo servidor no momento da criação da refeição e não devem ser enviados pelo cliente.
 - Os campos `totalCalories`, `totalProtein`, `totalCarbs` e `totalFat` também são calculados automaticamente com base nos alimentos referenciados tanto na criação quanto na atualização.
+
+## Controle de Progresso Diário
+
+O endpoint `GET /progress` permite consultar o progresso diário de consumo calórico do usuário. A progressão é feita através da comparação diária do registro das calorias existentes nas refeições do usuário com sua meta calórica (`calorieGoal`).
+
+### Parâmetros
+
+- `date` (opcional): Data no formato `YYYY-MM-DD`. Se não fornecido, usa a data atual.
+- `userId` (opcional): ID do usuário. Apenas administradores podem usar este parâmetro para consultar o progresso de outros usuários. Usuários comuns sempre consultam seu próprio progresso.
+
+### Resposta
+
+```json
+{
+  "userId": "user-1",
+  "date": "2025-01-20",
+  "totalCalories": 1850,
+  "calorieGoal": 2000,
+  "difference": 150,
+  "status": "below"
+}
+```
+
+O campo `status` pode ter três valores:
+- `below`: Consumo abaixo da meta
+- `equal`: Consumo exatamente na meta
+- `above`: Consumo acima da meta
+
+## Permissões de Administrador
+
+Usuários com role `admin` têm acesso a funcionalidades adicionais:
+
+- **Refeições**: Podem listar, atualizar e excluir refeições de qualquer usuário
+  - `GET /meals?userId=<id>`: Lista refeições de um usuário específico (ou todas se omitido)
+  - `PUT /meals/:id`: Atualiza refeição de qualquer usuário
+  - `DELETE /meals/:id`: Remove refeição de qualquer usuário
+
+- **Progresso**: Podem consultar o progresso diário de qualquer usuário
+  - `GET /progress?userId=<id>&date=YYYY-MM-DD`: Consulta progresso de qualquer usuário
 
 Exemplo de payload para criar uma refeição:
 

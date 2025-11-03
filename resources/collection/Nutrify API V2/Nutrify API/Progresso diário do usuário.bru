@@ -1,0 +1,32 @@
+meta {
+  name: Progresso diário do usuário
+  type: http
+  seq: 14
+}
+
+get {
+  url: {{baseUrl}}/progress?date={{today}}&userId={{idUsuario}}
+  body: none
+  auth: bearer
+}
+
+params:query {
+  date: {{today}}
+  userId: {{idUsuario}}
+}
+
+auth:bearer {
+  token: {{tokenUsuario}}
+}
+
+script:pre-request {
+  // Gera a data atual no formato YYYY-MM-DD
+  const today = new Date().toISOString().split('T')[0]
+  
+  // Salva como variável de ambiente (disponível em qualquer parte da request)
+  bru.setEnvVar("today", today)
+  
+  // Loga no console para conferência
+  console.log("Data atual (today):", today)
+  
+}
